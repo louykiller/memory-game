@@ -3,33 +3,41 @@
     <head>
         <title>Memory Game</title>
         <style>
-            button {
+            .cores {
                 height: 15vw;
                 width: 15vw;
                 display: inline;
             }
 
-            div {
-                text-align: center;
+            #reset {
+                height: 4vw;
+                width: 9vw;
+                font-size: 2vw;
+                visibility: hidden;
             }
 
+            div {
+                text-align: center;
+                margin: 3vw;
+            }
 
         </style>
     </head>
     <body>
         <div>
-            <h1 id="level">Memory game</h1>
+            <h1 id="level" style="font-size: 4vw">Memory game</h1>
         </div>
         <div>
-            <button id="rosa"       style="background-color: #FFB6C1;"></button>
-            <button id="azul"       style="background-color: #7DF9FF;"></button>
-            <button id="verde"      style="background-color: #32CD32;"></button>
-            <button id="amarelo"    style="background-color: #FCF55F;"></button>
-            <button id="roxo"       style="background-color: #DA70D6;"></button>
+            <button class="cores" id="rosa"       style="background-color: #FFB6C1;"></button>
+            <button class="cores" id="azul"       style="background-color: #7DF9FF;"></button>
+            <button class="cores" id="verde"      style="background-color: #32CD32;"></button>
+            <button class="cores" id="amarelo"    style="background-color: #FCF55F;"></button>
+            <button class="cores" id="roxo"       style="background-color: #DA70D6;"></button>
         </div>
         <div>
             <br>
-            <h1 id="legenda">Welcome</h1>
+            <h2 id="legenda" style="font-size:3vw;">Welcome</h1>
+            <button id="reset">Reset</button>
         </div>
         <script src="./script.js"></script>
 

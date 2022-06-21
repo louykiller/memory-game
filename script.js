@@ -63,6 +63,8 @@ function criarEventListeners(){
     buttons[2].addEventListener('click', function(){clickButton(buttons[2]);});
     buttons[3].addEventListener('click', function(){clickButton(buttons[3]);});
     buttons[4].addEventListener('click', function(){clickButton(buttons[4]);});
+
+    document.getElementById("reset").addEventListener('click', reset);
 }
 
 // Fazer uma sequencia inicial e inicar o primeiro nivel
@@ -140,6 +142,7 @@ function verificaJogada(button){
     if(sequencia[jogadas.length - 1] !== jogadas[jogadas.length - 1]){
         document.getElementById("legenda").innerHTML = "You lost!";
         fim = 1;
+        document.getElementById("reset").style.visibility="visible";
     }
     // Se os tamanhos forem iguais então acabou o nivel
     if(!fim && jogadas.length === sequencia.length){
@@ -168,6 +171,28 @@ async function victory(){
         await delay(temp/5);
     }
     document.getElementById("legenda").innerHTML = "Game Over!";
+}
+
+// Função que dá reset ao jogo
+async function reset(){
+    // Esconde o button de reset
+    document.getElementById("reset").style.visibility="hidden";
+    document.getElementById("legenda").innerHTML = "Reseting!";
+    document.getElementById("level").innerHTML = "Memory game";
+    // Coloca as variaveis no estado inicial
+    jogadas = [];
+    sequencia = [];
+    nivel = 1;
+    fim = 0;
+    // Piscar 2 vezes
+    for(let i = 0; i < 2; i++){
+        await delay(250);
+        todasEscuras()
+        await delay(250);
+        todasClaras();
+    }
+    // Recomeça o nivel 1
+    level(nivel);
 }
 
 let jogadas = [];
