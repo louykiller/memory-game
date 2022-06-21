@@ -101,25 +101,33 @@ async function level(x){
     await delay(temp);
     document.getElementById("legenda").innerHTML = "New level!";
     await delay(temp);
-    // Dar reset aos arrays
+    // Dar reset ao array
     jogadas.length = 0;
-    sequencia.length = 0;
+    
     // Indicar que vai ser mostrada a sequencia e mudar o level
     document.getElementById("level").innerHTML = "Level " + x;
     document.getElementById("legenda").innerHTML = "Watch carefully!";
     await delay(temp);
-    // Criar sequencia
-    for (let i = 0; i < x; i++){ 
-        // Escolher um button aleatorio
-        let but = buttons[randInt(5)];
-        // Colocar a sua posição no array
-        sequencia.push(cores[but.id][2]);
+
+    // Mostrar a sequencia até agora
+    for (let i = 0; i < sequencia.length; i++){ 
         // Piscar o button
-        escuro(but);
+        escuro(buttons[sequencia[i]]);
         await delay(temp/2);
-        claro(but);
+        claro(buttons[sequencia[i]]);
         await delay(temp/4);
     }
+
+    // Adicionar um button aleatorio
+    let but = buttons[randInt(5)];
+    // Colocar a sua posição no array
+    sequencia.push(cores[but.id][2]);
+    // Piscar o button
+    escuro(but);
+    await delay(temp/2);
+    claro(but);
+    await delay(temp/4);
+    
     // Cheats
     console.log(sequencia);
     // Indicar que é a vez do jogador
