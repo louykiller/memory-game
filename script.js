@@ -1,10 +1,10 @@
 // Cor: [claro, escuro]
 cores = {
     "rosa": ["#FFB6C1", "#FF1493", 0],
-    "azul": ["#7DF9FF", "#0047AB", 1],
-    "verde": ["#32CD32", "#008000", 2],
-    "amarelo": ["#FCF55F", "#DAA520", 3],
-    "roxo": ["#DA70D6", "#9F2B68", 4]
+    "azul": ["#7DF9FF", "#0096FF", 1],
+    "verde": ["#98FB98", "#7CFC00", 2],
+    "amarelo": ["#FFD580", "#FF7518", 3],
+    "roxo": ["#CF9FFF", "#BF40BF", 4]
 }
 
 // Os buttons coloridos
@@ -67,6 +67,19 @@ function criarEventListeners(){
     document.getElementById("reset").addEventListener('click', reset);
 }
 
+// Disable buttons
+function disableButtons(){
+    for(b of buttons){
+        b.disabled = true;
+    }
+}
+
+function ableButtons(){
+    for(b of buttons){
+        b.disabled = false;
+    }
+}
+
 // Fazer uma sequencia inicial e inicar o primeiro nivel
 async function sequenciaInicial(){
     const timer = 250;
@@ -98,6 +111,7 @@ function randInt(max) {
 
 // Função que muda de nivel
 async function level(x){
+    disableButtons();
     const temp = 1000;
     // Indicar que é um nivel novo
     await delay(temp);
@@ -134,12 +148,14 @@ async function level(x){
     console.log(sequencia);
     // Indicar que é a vez do jogador
     document.getElementById("legenda").innerHTML = "Your turn!";
+    ableButtons();
 }
 
 function verificaJogada(button){
     jogadas.push(cores[button.id][2]);
     // Se não for igual perdeu
     if(sequencia[jogadas.length - 1] !== jogadas[jogadas.length - 1]){
+        disableButtons();
         document.getElementById("legenda").innerHTML = "You lost!";
         fim = 1;
         document.getElementById("reset").style.visibility="visible";
@@ -160,6 +176,7 @@ function verificaJogada(button){
 }
 
 async function victory(){
+    disableButtons();
     const temp = 1000;
     document.getElementById("legenda").innerHTML = "YOU WON!";
     await delay(temp);
@@ -171,6 +188,7 @@ async function victory(){
         await delay(temp/5);
     }
     document.getElementById("legenda").innerHTML = "Game Over!";
+    document.getElementById("reset").style.visibility="visible";
 }
 
 // Função que dá reset ao jogo
